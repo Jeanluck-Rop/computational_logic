@@ -1,0 +1,151 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+
+%----- Configuración del estilo del documento------%
+\usepackage{graphicx, fancyhdr, lastpage}
+\usepackage[left=2cm,right=2cm,top=1.8cm,bottom=2.3cm]{geometry}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rfoot{\textit{Página \thepage \hspace{1pt} de \pageref{LastPage}}}
+
+%------ Paquetes matemáticos básicos --------%
+\usepackage{amsmath, amssymb, amsthm}
+
+\begin{document}
+
+%------ Encabezado -------- %
+\begin{center}
+  \begin{minipage}{3cm}
+    \begin{center}
+      \includegraphics[height=3.4cm]{unam_logo.png}
+    \end{center}
+  \end{minipage}\hfill
+  \begin{minipage}{10cm}
+    \begin{center}
+      \textbf{\Large Universidad Nacional Autónoma de México}\\[0.2cm]
+      \textbf{\large Facultad de Ciencias}\\[0.2cm]
+      \textbf{Lógica Computacional | 2025-2}\\[0.4cm]
+      \textbf{\Large Tarea 01}\\[0.1cm]
+      \textbf{Docentes:}\\
+      Noé Hernández \hspace{1em} Santiago Escamilla \hspace{1em} Ricardo López\\[0.3cm]
+      \textbf{Autores:}\\
+      Fernanda Ramírez Juárez \quad Ianluck Rojo Peña\\[0.3cm]
+      \textbf{Fecha de entrega:} Martes 11 de febrero de 2025
+    \end{center}
+  \end{minipage}\hfill
+  \begin{minipage}{3cm}
+    \begin{center}
+      \includegraphics[height=3.4cm]{fc_logo.png}
+    \end{center}
+  \end{minipage}
+\end{center}
+
+\bigskip
+\hrule height 0.1pt
+\bigskip
+
+%------ Notas sobre la resolución --------%
+\section*{Notas sobre la resolución}
+
+\begin{quote}
+  \textbf{Nota general:}  
+  Los ejercicios fueron resueltos en base a las notas de clase (IcNota2.pdf) y a los comentarios dados en las sesiones del curso. Se tomaron en cuenta los siguientes puntos específicos:  
+\end{quote}
+
+\begin{itemize}
+   \item \textbf{Ejercicios 1 y 2:} Se basan en las notas del profesor y los comentarios del 30 de enero y 6 de febrero.  
+   \item \textbf{Ejercicio 4:} Resuelto con base en la sección '7. Conceptos semánticos básicos' en IcNota2.pdf y explicaciones del ayudante Santiago el 7 de febrero.  
+   \item \textbf{Ejercicio 5:} Derivado de un ejercicio resuelto en clase el 30 de enero.  
+\end{itemize}
+
+\bigskip
+\hrule height 0.1pt
+\bigskip
+
+%------ Contenido -------- %
+\section*{Resolución de Ejercicios}
+
+\begin{enumerate}
+  
+  % ---- Ejercicio 1 ----
+  \item (1.5 pt.) Usando las siguientes claves:
+    \begin{itemize}
+       \item $p :=$ María está contenta.
+       \item $q :=$ María pide una bicicleta por su cumpleaños.
+       \item $r :=$ María recibe una bicicleta por su cumpleaños.
+       \item $s :=$ María odia a Juan.
+       \item $t :=$ Juan va a la playa.
+       \item $u :=$ Juan está de vacaciones.
+       \item $v :=$ El sol brilla.
+    \end{itemize}
+    
+    Exprese en español las siguientes fórmulas llenando el cuadro que está abajo.
+    \begin{enumerate}
+       \item Siempre que María está contenta y el sol brilla, deja de odiar a Juan.
+       \item Cuando brilla el sol, Juan va a la playa, si está de vacaciones.
+       \item María está contenta siempre que Juan está de vacaciones y se va a la playa.
+       \item Aunque María está contenta porque pidió una bicicleta para su cumpleaños y la ha recibido, odia a Juan.
+       \item María recibirá una bicicleta en su cumpleaños sólo si la pide.
+    \end{enumerate}
+
+  \bigskip
+  
+  % ---- Ejercicio 2 ----
+  \item (1 pt.) Desarrolle las siguientes sustituciones, además elimine los paréntesis que sean redundantes según el orden de precedencia de los operadores lógicos visto en clase:
+      
+    \begin{itemize}
+       \item[\textbf{a})] $\left( \neg (p \land q) \leftrightarrow \left( (\neg q) \rightarrow (p \rightarrow s) \right) \right) \quad [p := (q \rightarrow s)] [s := (\neg p)]$
+       \item[\textbf{b})] $\left( (p \lor q) \rightarrow ((\neg r) \leftrightarrow p) \right) \quad [r, p, q := p, q, r]$
+    \end{itemize}
+
+  \bigskip
+
+  % ---- Ejercicio 3 ----
+  \item (1 pt.) Tomando en cuenta la sintaxis para las fórmulas de la lógica proposicional definida en la Nota 01, reinserte tantos paréntesis como sea posible a la fórmula:
+    \[
+    (q \rightarrow p \rightarrow \neg r \land s) \lor \neg p
+    \]
+
+  \bigskip
+
+  % ---- Ejercicio 4 ----
+  \item (2 pts.) Sean $\Gamma$ y $\Delta$ dos conjuntos de oraciones de la lógica proposicional, y sean $\varphi$ y $\psi$ fórmulas de la lógica proposicional. Determine para cada una de las siguientes afirmaciones si es verdadera, con una demostración, o si es falsa, con un contraejemplo.
+
+    \begin{itemize}
+       \item Si $\Gamma \vdash \varphi \land \Delta \vdash \varphi$, entonces $\Gamma \cup \Delta \models \varphi$.
+       \item Si $\Gamma \vdash \varphi$ y $\Delta \not\vdash \varphi$, entonces $\Gamma \cup \Delta \models \varphi$.
+       \item Si $\Gamma \not\vdash \psi$, entonces $\Gamma \models \neg \psi$.
+    \end{itemize}
+
+  \bigskip
+
+  % ---- Ejercicio 5 ----
+  \item (1.5 pts.) Mediante interpretaciones decida si los siguientes conjuntos de proposiciones son satisfacibles:
+
+    \begin{itemize}
+       \item[a)] $\{ p \rightarrow q, (s \lor p) \land \neg q, \neg s \}$
+       \item[b)] $\{ p \rightarrow q, q \leftrightarrow s, \neg p, \neg s \}$
+    \end{itemize}
+
+  \bigskip
+
+  % ---- Ejercicio 6 ----
+  \item (2 pts.) Usando deducción natural pruebe la validez de los siguientes:
+
+    \begin{itemize}
+       \item $p \rightarrow q, q \rightarrow r \lor s, \neg s, p \vdash r$
+       \item $\neg p \lor q \vdash p \rightarrow q$
+    \end{itemize}
+
+  \bigskip
+
+  % ---- Ejercicio 7 ----
+  \item (2 pts.) Considere el siguiente argumento lógico:
+
+    \textit{Si Sarah Connor destruye a Skynet en 1994, entonces no habrá Día del Juicio Final. Si no hay Día del Juicio Final, John Connor no enviará a su padre a 1984. Es condición necesaria que John Connor envíe a su padre a 1984, para que el mismo John nazca. Sarah Connor no destruye a Skynet en 1994, si John no nace. Por lo tanto, Sarah Connor no destruirá a Skynet en 1994.}
+
+   Tradúzcalo a lógica proposicional y a través de tableaux semánticos determine si es correcto o no.
+
+\end{enumerate}
+\end{document}
