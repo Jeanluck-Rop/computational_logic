@@ -1,5 +1,6 @@
 \documentclass[11pt,letterpaper]{article}
 \usepackage[utf8]{inputenc}
+\usepackage{float, xcolor}
 
 %----- Configuración del estilo del documento------%
 \usepackage{graphicx, fancyhdr, lastpage}
@@ -81,6 +82,7 @@
     \end{itemize}
     
     Exprese en español las siguientes fórmulas llenando el cuadro que está abajo.
+    
     \begin{enumerate}
        \item Siempre que María está contenta y el sol brilla, deja de odiar a Juan.
        \item Cuando brilla el sol, Juan va a la playa, si está de vacaciones.
@@ -91,7 +93,7 @@
     
     \bigskip
 
-    \begin{table}[t]
+    \begin{table}[H]
       \begin{center}
         \begin{tabular}{| c | c | c | c | c | c |}
           
@@ -101,18 +103,57 @@
           2 & & & & & \checkmark \\ \hline
           3 & \checkmark & & & & \\ \hline
           4 & & & & \checkmark & \\ \hline
-          5 & & \checkmark & & & 
+          5 & & \checkmark & & & \\ \hline
         \end{tabular}
       \end{center}
     \end{table}
+
+    \bigskip
     
-    % ---- Ejercicio 2 ----
+  % ---- Ejercicio 2 ----
   \item (1 pt.) Desarrolle las siguientes sustituciones, además elimine los paréntesis que sean redundantes según el orden de precedencia de los operadores lógicos visto en clase:
     
     \begin{itemize}
-    \item[\textbf{a})] $\left( \neg (p \land q) \leftrightarrow \left( (\neg q) \rightarrow (p \rightarrow s) \right) \right) \quad [p := (q \rightarrow s)] [s := (\neg p)]$
+    \item[\textbf{a})] $\left( (\neg (p \land q) \leftrightarrow \left( (\neg q) \rightarrow (p \rightarrow s) \right) \right) \quad [p := (q \rightarrow s)] [s := (\neg p)]$ \\
+      \\
+      Sustituímos a la variable atómica $p$ con la fórmula \( (q \rightarrow s) \) en la proposición:
+      \[
+      \left(( \neg ((q \rightarrow s) \land q)) \leftrightarrow \left( (\neg q) \rightarrow ((q \rightarrow s) \rightarrow s \right) \right)) \quad [s := (\neg p)]
+      \]
+      Ahora continuamos con la sustitución de $s$:
+      \[
+      \left(( \neg ((q \rightarrow s) \land q)) \leftrightarrow \left( (\neg q) \rightarrow ((q \rightarrow ( \neg p)) \rightarrow (\neg p)) \right) \right)
+      \]
+      Por jerarquía de operadores eliminamos los paréntesis innecesarios:
+      \[
+      \textcolor{blue}{(} \textcolor{magenta}{(}\neg ((q \rightarrow s) \land q) \textcolor{magenta}{)} \leftrightarrow \textcolor{green}{(} \textcolor{orange}{(}\neg q \textcolor{orange}{)} \rightarrow \textcolor{cyan}{(}(q \rightarrow \textcolor{orange}{(} \neg p \textcolor{orange}{)} ) \rightarrow \textcolor{orange}{(} \neg p \textcolor{orange}{)} \textcolor{cyan}{)} \textcolor{green}{)} \textcolor{blue}{)}
+      \]
+      \[
+      = \neg ((q \rightarrow s) \land q) \leftrightarrow \neg q \rightarrow (q \rightarrow \neg p) \rightarrow \neg p
+      \]
       
-    \item[\textbf{b})] $\left( (p \lor q) \rightarrow ((\neg r) \leftrightarrow p) \right) \quad [r, p, q := p, q, r]$
+      \textbf{Resultado final:}
+      \[
+      \neg ((q \rightarrow s) \land q) \leftrightarrow \neg q \rightarrow (q \rightarrow \neg p) \rightarrow \neg p
+      \]
+      
+      \bigskip
+      
+    \item[\textbf{b})] $\left( (p \lor q) \rightarrow ((\neg r) \leftrightarrow p) \right) \quad [r, p, q := p, q, r]$ \\
+      \\
+      Dado que es una única sustitución, se reemplazan las variables una vez:
+      \[
+      \left((q \lor r) \rightarrow \left(( \neg p) \leftrightarrow q\right) \right)
+      \]
+      Eliminamos los paréntesis:
+      \[
+      \textcolor{blue}{(} \textcolor{magenta}{(} q \lor r \textcolor{magenta}{)} \rightarrow ( \textcolor{orange}{(} \neg p \textcolor{orange}{)} \leftrightarrow q) \textcolor{blue}{)}
+      \]
+
+      \textbf{Resultado final:}
+      \[
+      q \lor r \rightarrow (\neg p \leftrightarrow q)
+      \]
     \end{itemize}
     
     \bigskip
