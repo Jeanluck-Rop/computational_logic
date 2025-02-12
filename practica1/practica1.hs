@@ -101,17 +101,16 @@ equivalentesPrimo n = primoP n == primoG n
 
 --Ejercicio 7. Considere la gramaticá que define las expresiones de paréntesis balanceados : E ::= () , E ::=(E), E ::= EE
 --Definir una función esFormula e dé como resultado True si e es una cadena correspondiente a una expresión que pertenece a la gramática de los parentesisi balanceados.
+
 esFormula :: String -> Bool
-esFormula "" = False  -- La cadena vacía no es válida
 esFormula "()" = True -- Caso base
-esFormula s
-  | head s == '(' && last s == ')' && esFormula (init (tail s)) = True  -- Caso (E)
-  | otherwise = algunaParticionValida s  -- Caso EE
+esFormula ('(' : xs) 
+    | not (null xs) && last xs == ')' && esFormula (init xs) = True
+esFormula xs = any (\(f, g) -> esFormula f && esFormula g) (dividir xs)
 
--- Función auxiliar para verificar si alguna partición de la cadena en dos partes da dos expresiones válidas
-algunaParticionValida :: String -> Bool
-algunaParticionValida s = any (\(a, b) -> esFormula a && esFormula b) (particiones s)
+-- Función auxiliar para dividir una cadena en dos partes posibles
+dividir :: String -> [(String, String)]
+dividir [] = []
+dividir xs = [(take n xs, drop n xs) | n <- [1 .. length xs - 1]]
 
--- Función que genera todas las formas de partir la cadena en dos partes no vacías
-particiones :: String -> [(String, String)]
-particiones s = [(take i s, drop i s) | i <- [1..length s - 1]]
+          
