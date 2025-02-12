@@ -1,1 +1,52 @@
-λx.xxx
+Lógica Computacional
+=======================
+
+## Práctica 1. Laboratorio
+
+Nota: estos ejercicos fueron realizados en base a:
+-  Presentación de Power Point (Introducción al cálculo lambda) impartida en clase en el horario de laboratorio
+   por el ayudante Ricardo el día 28 de enero del 2025.
+-  Tambien se tuvo un apoyo adicional en el siguiente link: https://cs.famaf.unc.edu.ar/~hoffmann/pd20/02.html
+----------------------------------------------------
+
+1. En el cálculo lambda, decimos que una expresión tiene forma normal si se le ha aplicado la reducción beta de   tal manera que no quedan λ’s por reducir en la expresión. Determina cuáles de las siguientes expresiones se
+  pueden reducir a forma normal y cuáles no (es decir, divergen):
+   a) λx.xxx
+      R= No hay argumentos con los que evaluar la expresión, por lo cuál no es posible aplicar una reducción
+      	 beta. La expresión ya está reducida a su forma normal.
+      
+   b) (λz.zz)λy.yy
+      R= Notemos que:
+      	 (λz.zz)λy.yy = (λz.zz)(λy.yy), aplicando la reducción beta obtenemos:
+	 (λz.zz)(λy.yy) = (λy.yy)(λy.yy), y a partir de este punto obtenemos un bucle infinito, es decir,
+	 la expresión diverge.
+      
+   c) (λx.xxx)z
+      R= Aplicando reducción beta tenemos:
+      (λx.xxx)z = zzz , y hemos llegado a la forma normal de la expresión.
+
+2. Reduce cada una de las siguientes expresiones a su forma normal:
+   a) (λabc.cba)zz(λwv.w)
+      R=
+	Deshacemos el currying:
+	(λabc.cba)zz(λwv.w) = (λa.(λb.(λc.cba))(z)(z)(λwv.w)
+
+	Aplicamos reducción beta:
+	(λa.(λb.(λc.cba))(z)(z)(λwv.w) = (λb.(λc.cbz)(z)(λwv.w)
+	= (λc.czz)(λwv.w) = (λwv.w)(z)(z) = (λw.(λv.w))(z)(z) = (λv.z)(z)
+
+	Cómo no hay ningún parámtero 'v' en el cuerpo con el qué evaluar a 'z', la forma normal de la expresión
+	es z, es decir:
+	(λv.z)(z) = z
+      
+   b) (λx.λy.xyy)(λa.a)b
+      R=
+	Aplicamos reduccion beta:
+	(λx.λy.xyy)(λa.a)b = (λy.(λa.a)yy)(b) = (λa.a)(b)(b) = b(b) = bb
+	Por lo tanto su forma normal de la expresión es: bb
+	
+   c) (λy.y)(λx.xx)(λz.zq)
+      R=
+	Aplicamos reducción beta:
+	(λy.y)(λx.xx)(λz.zq) = (λx.xx)(λz.zq) = (λz.zq)(λz.zq) = (λz.zq)(q) = qq
+	Por lo tanto su forma normal de la expresión es: qq
