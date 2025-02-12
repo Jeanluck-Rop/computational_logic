@@ -41,7 +41,10 @@ Nota: estos ejercicos fueron realizados en base a:
       
    b) (λx.λy.xyy)(λa.a)b
       R=
-      
+	Aplicamos reduccion beta:
+	(λx.λy.xyy)(λa.a)b = (λy.(λa.a)yy)(b) = (λa.a)(b)(b) = b(b) = bb
+	Por lo tanto su forma normal de la expresión es: bb
+	
    c) (λy.y)(λx.xx)(λz.zq)
       R=
 	Aplicamos reducción beta:
