@@ -2,7 +2,6 @@
   Las 7 maneras de deinir recursivamente una función factorial en haskell en base a la
   presentacion 'HASKELL: PROGRAMACION FUNCIONAL' impartida por el ayudante Ricardo.
  -}
-
 -- Primer definición, con condicionales.
 fact1 :: Integer -> Integer
 fact1 n = if n == 0 then 1
@@ -26,7 +25,7 @@ fact3 n = n * fact3 (n-1)
 fact4 :: Integer -> Integer
 fact4 n
   | n == 0  = 1
-  | n >=    = n * fact4 (n-1)
+  | n >= 1   = n * fact4 (n-1)
 
 
 -- Quinta definición, restricción del dominio mediante patrones.
@@ -66,44 +65,66 @@ factEquivalence e
   | otherwise e = let n = fact1 e
                   in n == fact2 e && n == fact3 e && n == fact4 e && n == fact6 e && n == fact7 e
 
-
--- Ejercicio 5.
--- Definida por patrones.
+-- Ejercicio 5. Definir una función anterior de modo que anterior n es el anterior del
+--             número natural n. Definirla usando patrones y con guardas. Comprobar
+--             que las funciones definidas son equivalentes
+-- Definida por patrones 
 previousP :: Integer -> Integer
-previousP 0 = error "En los Enteros el 0 no tiene número anterior"
-previousP n = n - 1
+previousP 0 = error "El 0 no tiene anterior"
+previousP n = n-1
 
--- Definida por guardas.
+-- Definida por guardas
 previousG :: Integer -> Integer
 previousG n
-  | n > 0 = n - 1
-  | otherwise = error "En los Enteros el 0 no tiene número anterior"
+  | n > 0 = n-1
+  | otherwise = error "El 0 no tiene anterior"
 
--- Comprobar la equivalencia
 prevEquivalence :: Integer -> Bool
-prevEquivalence e = previousP e == previousG e
+prevEquivalence n = previousP n == previousG n
 
--- Ejercicio 6.
+
+-- Ejercicio 6. Definir una función primo tal que la evaluación de primo n dé como resultado True
+--              únicamente cuando n es un número primo. Definirla usando
+
+restricción de dominio con patrones y con guardas. Comprobar que las
+funciones definidas son equivalentes.
 isDivisor :: Integer -> Integer -> Bool
 isDivisor n x
-| x * x > n = False
-| n mod x == 0 == True
-| otherwise = divisor n(x + 1)
+  | x*x > n = False
+  | n `mod` x == 0 = True
+  | otherwise = divisor n(x+1)
 
--- Definida por patrones.
+-- Definida por patrones
 primeP :: Integer -> Bool
 primeP 0 = False
 primeP 1 = False
-primeP 2 = True
+primeP 2 = True 
 primeP n = not (divisor n 2)
 
--- Definida por guardas.
+-- Definida por guardas
 primeG :: Integer -> Bool
 primeG n
-| n < 2 = False
-| otherwise = not (divisor n 2)
+  | n < 2 = False
+  | otherwise = not(divisor n 2)
+  
+-- La función en cuestión
+prevEquivalence :: Integer -> Bool
+prevEquivalence n = primeP n == primeG n
 
--- revisar equivalencia
 
+-- Ejercicio 7. Considere la gramaticá que define las expresiones de paréntesis balanceados:
+--             E ::= () , E ::=(E), E ::= EE
+--             Definir una función esFormula tal que la evaluación esFormula e dé
+--             como resultado True si e es una cadena correspondiente a una expresión
+--             que pertenece a la gramática de los paréntesis balanceados.
 
--- Ejercicio 7.
+isFormula :: String -> Bool
+isFormula "()" = True -- Caso base
+isFormula ('(' : xs) 
+    | not (null xs) && last xs == ')' && isFormula (init xs) = True
+isFormula xs = any (\(f, g) -> isFormula f && isFormula g) (dividir xs)
+
+-- Función auxiliar para dividir una cadena en dos partes posibles
+divideIt :: String -> [(String, String)]
+divideIt [] = []
+divideIt xs = [(take n xs, drop n xs) | n <- [1 .. length xs - 1]]
