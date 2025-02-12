@@ -159,11 +159,17 @@
     \bigskip
 
   % ---- Ejercicio 3 ----
-  \item (1 pt.) Tomando en cuenta la sintaxis para las fórmulas de la lógica proposicional definida en la Nota 01, reinserte tantos paréntesis como sea posible a la fórmula:
+  \item (1 pt.) Tomando en cuenta la sintaxis para las fórmulas de la lógica proposicional definida en la Nota 01, reinserte tantos paréntesis como sea posible a la fórmula: $(q \rightarrow p \rightarrow \neg r \land s) \lor \neg p$ \\
+    \\
     \[
-    (q \rightarrow p \rightarrow \neg r \land s) \lor \neg p
+    (q \rightarrow p \rightarrow \neg r \land s) \lor \neg p = \textcolor{blue}{(}(q \rightarrow \textcolor{magenta}{(} p \rightarrow \textcolor{green}{(} \textcolor{orange}{(} \neg r \textcolor{orange}{)} \land s \textcolor{green}{)} \textcolor{magenta}{)}) \lor \textcolor{orange}{(}\neg p \textcolor{orange}{)} \textcolor{blue}{)}
     \]
-
+    
+    \textbf{Resultado final:}
+    \[
+    ((q \rightarrow (p \rightarrow ((\neg r) \land s))) \lor (\neg p))
+    \]
+    
   \bigskip
 
   % ---- Ejercicio 4 ----
@@ -179,10 +185,78 @@
 
   % ---- Ejercicio 5 ----
   \item (1.5 pts.) Mediante interpretaciones decida si los siguientes conjuntos de proposiciones son satisfacibles:
-
     \begin{itemize}
        \item[a)] $\{ p \rightarrow q, (s \lor p) \land \neg q, \neg s \}$
+         Definimos el conjunto de fórmulas:
+         \[
+         \Gamma = \{ p \rightarrow q, (s \vee p) \land \neg q, \neg s \}
+         \]
+         donde:
+         \[
+         \varphi_1 = p \rightarrow q, \quad \varphi_2 = (s \vee p) \land \neg q, \quad \varphi_3 = \neg s
+         \]
+         Se dice que $\Gamma$ es satisfacible si existe una interpretación $I$ tal que $I(\varphi) = 1$ para todo $\varphi \in \Gamma$.\\
+
+         Así, evaluamos $I(\varphi_1) = 1$, es decir, $I(p \rightarrow q) = 1$, lo que implica que $I(p) = 0$ o $I(q) = 1$.\\
+         
+         Si $I(p) = 0$, entonces $I(q)$ puede tomar cualquier valor. Supongamos que $I(q) = 0$.\\
+
+         Ahora, evaluamos $I(\varphi_2) = 1$, es decir, $I((s \vee p) \land \neg q) = 1$.\\
+         
+         Para que esto se cumpla, se debe cumplir que $I(s \vee p) = 1$ y $I(\neg q) = 1$.\\
+         
+         Dado que $I(\neg q) = 1$, se tiene que $I(q) = 0$.\\
+
+         Por otro lado, $I(s \vee p) = 1$ implica que $I(s) = 1$ o $I(p) = 1$.\\
+         
+         Como habíamos supuesto que $I(p) = 0$, entonces necesariamente $I(s) = 1$.\\
+
+         Sin embargo, evaluando $I(\varphi_3) = 1$, es decir, $I(\neg s) = 1$,
+         se deduce que $I(s) = 0$, lo cual contradice la evaluación anterior de $I(s) = 1$.\\
+
+         Dado que llegamos a una contradicción, se concluye que no existe una interpretación que satisfaga todas las fórmulas de $\Gamma$.  
+
+         \[
+         \therefore \Gamma \text{ es insatisfacible.}
+         \]
+
+         \bigskip
+         
        \item[b)] $\{ p \rightarrow q, q \leftrightarrow s, \neg p, \neg s \}$
+         Definimos el conjunto de fórmulas:
+         \[
+         \Gamma = \{ p \rightarrow q, q \leftrightarrow s, \neg p, \neg s \}
+         \]
+
+         donde:
+
+         \[
+         \varphi_1 = p \rightarrow q, \quad \varphi_2 = q \leftrightarrow s, \quad \varphi_3 = \neg p, \quad \varphi_4 = \neg s
+         \]
+
+         Analizamos la satisfacibilidad del conjunto.\\ 
+         Si $I(\varphi_1) = 1$, es decir, $I(p \rightarrow q) = 1$, entonces debe cumplirse que $I(p) = 0$ o $I(q) = 1$.\\
+         
+         Dado que $I(\varphi_3) = 1$, es decir, $I(\neg p) = 1$, se tiene que $I(p) = 0$.\\
+         
+         Por lo tanto, $I(p \rightarrow q) = 1$ se cumple para cualquier valor de $I(q)$.\\
+
+         Ahora evaluamos $I(\varphi_2) = 1$, es decir, $I(q \leftrightarrow s) = 1$, lo que implica que $I(q) = I(s)$.\\
+         
+         Si $I(q) = 0$, entonces $I(s) = 0$.\\
+
+         Por otro lado, $I(\varphi_4) = 1$, es decir, $I(\neg s) = 1$, lo que implica que $I(s) = 0$.\\
+         
+         Esto es consistente con la evaluación anterior de $I(s) = 0$.\\
+
+         Sin embargo, si asumimos que $I(q) = 1$, entonces $I(s) = 1$ por la equivalencia $q \leftrightarrow s$.\
+         
+         Esto contradice la evaluación de $I(\neg s) = 1$, lo que significa que nuestra suposición de $I(q) = 1$ es incorrecta.\\
+
+         Así, forzamos que $I(q) = 0$ y $I(s) = 0$, lo cual es consistente con todas las fórmulas.\\
+
+         Por lo tanto, hemos encontrado una interpretación que satisface todas las fórmulas en $\Gamma$, lo que implica que $\Gamma$ \textbf{es satisfacible}.
+
     \end{itemize}
 
   \bigskip
