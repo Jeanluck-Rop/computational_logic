@@ -75,7 +75,7 @@ anteriorG n
 equivalentes :: Integer -> Bool
 equivalentes n = anteriorP n == anteriorG n
 
---Ejercicio 6. Definir una función primi tal que la evaluación de primo n dé como resuktado TRUE únicamnete cuando n es un número primo.
+--Ejercicio 6. Definir una función primo tal que la evaluación de primo n dé como resuktado TRUE únicamnete cuando n es un número primo.
 
 divisor :: Integer -> Integer -> Bool
 divisor n x
@@ -93,9 +93,10 @@ primoG :: Integer -> Bool
 primoG n
   | n < 2 = False
   | otherwise = not(divisor n 2)
-
-
+  
 --revisar equivalencia
+equivalentesPrimo :: Integer -> Bool
+equivalentesPrimo n = primoP n == primoG n
 
 
 --Ejercicio 7. Considere la gramaticá que define las expresiones de paréntesis balanceados : E ::= () , E ::=(E), E ::= EE
