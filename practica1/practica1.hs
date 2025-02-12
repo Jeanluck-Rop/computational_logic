@@ -52,7 +52,7 @@ fact7 n = foldr (*) 1 [1..n]
 -- Ejercicio 3. Definir la función comb tal que comb n k devuelve las
 --              combinaciones de n en k.
 comb :: Integer -> Integer -> Integer
-comb n k = fact1 (n) div (fact1 (k) * fact1 (n - k))
+comb n k = fact1 (n) `div` (fact1 (k) * fact1 (n - k))
 
   
 -- Ejercicio 4. Definir una función que compruebe que las diferentes versiones
@@ -61,9 +61,9 @@ comb n k = fact1 (n) div (fact1 (k) * fact1 (n - k))
 --              mismos argumentos de entrada.
 factEquivalence :: Integer -> Bool
 factEquivalence e
-  | e < 0 = True
-  | otherwise e = let n = fact1 e
-                  in n == fact2 e && n == fact3 e && n == fact4 e && n == fact6 e && n == fact7 e
+  | e < 0 = error "El número ingresado no es un entero positivo"
+  | otherwise = (fact1 e == fact2 e) && (fact2 e == fact3 e) && (fact3 e == fact4 e) &&
+                (fact1 e == fact2 e) && (fact6 e == fact7 e)
 
 -- Ejercicio 5. Definir una función anterior de modo que anterior n es el anterior del
 --             número natural n. Definirla usando patrones y con guardas. Comprobar
@@ -86,30 +86,29 @@ prevEquivalence n = previousP n == previousG n
 -- Ejercicio 6. Definir una función primo tal que la evaluación de primo n dé como resultado True
 --              únicamente cuando n es un número primo. Definirla usando
 
-restricción de dominio con patrones y con guardas. Comprobar que las
-funciones definidas son equivalentes.
+-- restricción de dominio con patrones y con guardas. Comprobar que las funciones definidas son equivalentes.
 isDivisor :: Integer -> Integer -> Bool
 isDivisor n x
   | x*x > n = False
   | n `mod` x == 0 = True
-  | otherwise = divisor n(x+1)
+  | otherwise = isDivisor n(x+1)
 
 -- Definida por patrones
 primeP :: Integer -> Bool
 primeP 0 = False
 primeP 1 = False
 primeP 2 = True 
-primeP n = not (divisor n 2)
+primeP n = not (isDivisor n 2)
 
 -- Definida por guardas
 primeG :: Integer -> Bool
 primeG n
   | n < 2 = False
-  | otherwise = not(divisor n 2)
+  | otherwise = not (isDivisor n 2)
   
 -- La función en cuestión
-prevEquivalence :: Integer -> Bool
-prevEquivalence n = primeP n == primeG n
+prevEquivalence6 :: Integer -> Bool
+prevEquivalence6 n = primeP n == primeG n
 
 
 -- Ejercicio 7. Considere la gramaticá que define las expresiones de paréntesis balanceados:
@@ -122,7 +121,7 @@ isFormula :: String -> Bool
 isFormula "()" = True -- Caso base
 isFormula ('(' : xs) 
     | not (null xs) && last xs == ')' && isFormula (init xs) = True
-isFormula xs = any (\(f, g) -> isFormula f && isFormula g) (dividir xs)
+isFormula xs = any (\(f, g) -> isFormula f && isFormula g) (divideIt xs)
 
 -- Función auxiliar para dividir una cadena en dos partes posibles
 divideIt :: String -> [(String, String)]
