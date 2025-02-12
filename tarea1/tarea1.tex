@@ -88,18 +88,34 @@
        \item Aunque María está contenta porque pidió una bicicleta para su cumpleaños y la ha recibido, odia a Juan.
        \item María recibirá una bicicleta en su cumpleaños sólo si la pide.
     \end{enumerate}
+    
+    \bigskip
 
-  \bigskip
-  
-  % ---- Ejercicio 2 ----
+    \begin{table}[t]
+      \begin{center}
+        \begin{tabular}{| c | c | c | c | c | c |}
+          
+          \hline 
+          & $(u \land t) \rightarrow p$ & $\neg (r \land \neg q )$ & $(p \land v) \rightarrow \neg s$ & $(p \land (q \land r)) \land s$ & $v \rightarrow u \rightarrow t$ \\ \hline
+          1 & & & \checkmark & & \\ \hline
+          2 & & & & & \checkmark \\ \hline
+          3 & \checkmark & & & & \\ \hline
+          4 & & & & \checkmark & \\ \hline
+          5 & & \checkmark & & & 
+        \end{tabular}
+      \end{center}
+    \end{table}
+    
+    % ---- Ejercicio 2 ----
   \item (1 pt.) Desarrolle las siguientes sustituciones, además elimine los paréntesis que sean redundantes según el orden de precedencia de los operadores lógicos visto en clase:
-      
+    
     \begin{itemize}
-       \item[\textbf{a})] $\left( \neg (p \land q) \leftrightarrow \left( (\neg q) \rightarrow (p \rightarrow s) \right) \right) \quad [p := (q \rightarrow s)] [s := (\neg p)]$
-       \item[\textbf{b})] $\left( (p \lor q) \rightarrow ((\neg r) \leftrightarrow p) \right) \quad [r, p, q := p, q, r]$
+    \item[\textbf{a})] $\left( \neg (p \land q) \leftrightarrow \left( (\neg q) \rightarrow (p \rightarrow s) \right) \right) \quad [p := (q \rightarrow s)] [s := (\neg p)]$
+      
+    \item[\textbf{b})] $\left( (p \lor q) \rightarrow ((\neg r) \leftrightarrow p) \right) \quad [r, p, q := p, q, r]$
     \end{itemize}
-
-  \bigskip
+    
+    \bigskip
 
   % ---- Ejercicio 3 ----
   \item (1 pt.) Tomando en cuenta la sintaxis para las fórmulas de la lógica proposicional definida en la Nota 01, reinserte tantos paréntesis como sea posible a la fórmula:
