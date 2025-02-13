@@ -32,7 +32,7 @@
       Noé Hernández \hspace{1em} Santiago Escamilla \hspace{1em} Ricardo López\\[0.3cm]
       \textbf{Autores:}\\
       Fernanda Ramírez Juárez \quad Ianluck Rojo Peña\\[0.3cm]
-      \textbf{Fecha de entrega:} Martes 11 de febrero de 2025
+      \textbf{Fecha de entrega:} Miércoles 12 de febrero de 2025
     \end{center}
   \end{minipage}\hfill
   \begin{minipage}{3cm}
@@ -57,7 +57,8 @@
 \begin{itemize}
    \item \textbf{Ejercicios 1 y 2:} Se basan en las notas del profesor y los comentarios del 30 de enero y 6 de febrero.  
    \item \textbf{Ejercicio 4:} Resuelto con base en la sección '7. Conceptos semánticos básicos' en IcNota2.pdf y explicaciones del ayudante Santiago el 7 de febrero.  
-   \item \textbf{Ejercicio 5:} Derivado de un ejercicio resuelto en clase el 30 de enero.  
+   \item \textbf{Ejercicio 5:} Derivado de un ejercicio resuelto en clase el 30 de enero.
+   \item \textbf{Ejercicio 6 y 7:} Se basan en las clases y notas del profesor además las clases del ayudante Santiago los días 6, 7, 10, 11 y 12 de febrero.
 \end{itemize}
 
 \bigskip
@@ -176,17 +177,110 @@
   \item (2 pts.) Sean $\Gamma$ y $\Delta$ dos conjuntos de oraciones de la lógica proposicional, y sean $\varphi$ y $\psi$ fórmulas de la lógica proposicional. Determine para cada una de las siguientes afirmaciones si es verdadera, con una demostración, o si es falsa, con un contraejemplo.
 
     \begin{itemize}
-       \item Si $\Gamma \vdash \varphi \land \Delta \vdash \varphi$, entonces $\Gamma \cup \Delta \models \varphi$.
-       \item Si $\Gamma \vdash \varphi$ y $\Delta \not\vdash \varphi$, entonces $\Gamma \cup \Delta \models \varphi$.
-       \item Si $\Gamma \not\vdash \psi$, entonces $\Gamma \models \neg \psi$.
+    \item Si $\Gamma \vdash \varphi \land \Delta \vdash \varphi$, entonces $\Gamma \cup \Delta \models \varphi$.
+      \subsection*{Demostración}
+
+      \textbf{P.D.} $\Gamma \cup \Delta \vDash \varphi$ significa que para toda interpretación $I$ que satisface a $\Gamma \cup \Delta$, $I(\Gamma \cup \Delta) = 1$, entonces también satisface a $\varphi$, $I(\varphi) = 1$. De este modo, consideramos los siguientes casos:
+
+      \subsubsection*{Caso 1: $\Gamma \cup \Delta$ es insatisfacible}
+
+      Usaremos una de las propiedades de la Proposición 7.5 del archivo PDF \textit{IC-Nota02.pdf} para demostrar este caso. Debemos probar lo siguiente:\\
+
+      Sea $\Gamma'$ un conjunto de fórmulas y $\varphi'$ una fórmula. 
+
+      \textbf{P.D.} Si $\Gamma'$ es insatisfacible, entonces $\Gamma'$ $\vDash \varphi'$.
+
+      Recordemos que la relación de consecuencia lógica se entiende a través de una implicación del siguiente modo:
+      \[
+      \text{Para toda interpretación } I, I(\Gamma') = 1 \rightarrow I(\varphi') = 1.
+      \]
+
+      (Fragmento obtenido de las Notas 02)
+
+      Supongamos ahora que $\Gamma'$ es insatisfacible, entonces $I(\Gamma)'$ = 0 para toda interpretación $I$.
+
+      En particular, si suponemos que se cumple $I(\Gamma') = 0 \rightarrow I(\varphi') = 1$.
+      
+      Tenemos que, en la lógica proposicional, si el antecedente es falso, la implicación es verdadera sin importar la veracidad de la conclusión.
+      
+      Así, si $\Gamma'$ es insatisfacible, entonces $\Gamma' \vDash \varphi$.\\
+
+      Y $\therefore$ Si $\Gamma \vdash \varphi \land \Delta$ es insatisfacible, entonces $\Gamma \cup \Delta \models \varphi$
+
+      \subsubsection*{Caso 2: $\Gamma \cup \Delta$ es satisfacible}
+
+      \textbf{Subcaso 2.1:} $\varphi \in \Gamma$ o $\varphi \in \Delta$
+
+      Es trivial, ya que como $\varphi$ pertenece a alguno de los dos conjuntos, éste sigue perteneciendo a la unión, es decir, $\varphi \in \Gamma \cup \Delta$.
+      
+      Dado que $\Gamma \cup \Delta$ es satisfacible, significa que $I(\Gamma \cup \Delta) = 1$.
+      
+      Por lo tanto, $\forall  \psi \in \Gamma \cup \Delta, I(\psi) = 1$, lo que implica que $\varphi$ es satisfacible.  
+
+      Así, concluimos que $\Gamma \cup \Delta \vDash \varphi$.
+
+      \textbf{Subcaso 2.2:} $\varphi \notin \Gamma$ y $\varphi \notin \Delta$
+
+      Es trivial, ya que nuestro supuesto es que $\Gamma \vDash \varphi$ y $\Delta \vDash \varphi$.
+      
+      Y cómo $\Gamma \cup \Delta$ es satisfacible, la interpretación $I$ que hace satisfacible a $\Gamma \cup \Delta$ también hace satisfacible a $\varphi$.  
+
+      Por lo tanto, se concluye que: $\Gamma \cup \Delta \vDash \varphi$.
+
+      \bigskip
+
+      \textbf{Conclusión:} Si $\Gamma \vDash \varphi$ y $\Delta \vDash \varphi$, entonces $\Gamma \cup \Delta \vDash \varphi$.
+
+      \bigskip
+      
+    \item Si $\Gamma \vDash \varphi$ y $\Delta \nvDash \varphi$, entonces $\Gamma \cup \Delta \vDash \varphi$.
+      \subsection*{Demostración}
+
+      Por nuestro supuesto, para toda interpretación I tal que $I(\Gamma) = 1$, se tiene que $I(\varphi) = 1$.
+      
+      Además, existe I' tal que I'($\Delta$) = 1, pero I'($\varphi$) = 0.
+
+      Notemos que $\Gamma \cup \Delta$ es el conjunto con los elementos tanto de $\Gamma$ como de $\Delta$, por lo que cualquier interpretación $I^{*}$ debe satisfacer las fórmulas de $\Gamma$ como de $\Delta$).
+
+      Pero por nuestro supuesto, existe $\psi \in \Gamma$ tal que $I^{*}(\psi) = 1$, y esta interpretación de la fórmula $\psi$ es necesaria para que $\varphi$ sea consecuencia lógica de $\Gamma$.
+
+      Sin embargo, existe al menos $\psi' \in \Delta$ tal que cualquier interpretación $I^{*}(\psi') = 0$ pues $\psi'$ es la fórmula que, al aplicarle alguna interpretación en $\Delta$, hace que $\varphi$ no sea consecuencia lógica de $\Delta$.
+
+      De este modo, no hay interpretaciones que hagan a \( \Gamma \cup \Delta \) satisfacible, pues de lo contrario, se contradicen a nuestro supuesto.
+
+      Por lo tanto, $\Gamma \cup \Delta$ es insatisfacible, y por una propiedad usada en el ejercicio anterior: Si $\Gamma \cup \Delta$ es insatisfacible, entonces $\Gamma \cup \Delta \vDash \varphi$.
+
+      \[
+       \therefore \quad Si \quad \Gamma \vDash \varphi \quad y \quad \Delta \nvDash \varphi,\quad entonces \quad \Gamma \cup \Delta \vDash \varphi
+      \]
+      
+    \item Si $\Gamma \nvDash \psi$, entonces $\Gamma \vDash \neg \varphi$.
+      
+      \subsection*{Contraejemplo}
+      
+      Por el Lema 7.2 de las notas (ICNota 02.pdf), $\varnothing$ es un conjunto vacío de fórmulas válidas.
+      
+      Por lo que definimos a  $\psi = p \rightarrow q$ y $\Gamma = \varnothing$.
+      
+      Por definición, $p \rightarrow q$ no es tautología, entonces $\Gamma \nvDash \psi$, es decir: $\varnothing \nvDash p \rightarrow q$.
+      
+      Pues recordemos que toda interpretación satisface a $\varnothing$, pero no toda interpretación satisface $p \rightarrow q$.
+      
+      Así, $\Gamma \nvDash \neg \psi$, es decir: $\varnothing \nvDash \neg (p \rightarrow q)$ y ya que $\neg (p \rightarrow q)$ sigue sin ser tautología.
+
+      Por lo tanto, la afirmación es falsa.
+      \bigskip
+      
     \end{itemize}
 
-  \bigskip
+    \bigskip
 
+    \newpage
   % ---- Ejercicio 5 ----
   \item (1.5 pts.) Mediante interpretaciones decida si los siguientes conjuntos de proposiciones son satisfacibles:
     \begin{itemize}
-       \item[a)] $\{ p \rightarrow q, (s \lor p) \land \neg q, \neg s \}$
+       \item[a)] $\{ p \rightarrow q, (s \lor p) \land \neg q, \neg s \}$\\
+      
          Definimos el conjunto de fórmulas:
          \[
          \Gamma = \{ p \rightarrow q, (s \vee p) \land \neg q, \neg s \}
@@ -195,7 +289,7 @@
          \[
          \varphi_1 = p \rightarrow q, \quad \varphi_2 = (s \vee p) \land \neg q, \quad \varphi_3 = \neg s
          \]
-         Se dice que $\Gamma$ es satisfacible si existe una interpretación $I$ tal que $I(\varphi) = 1$ para todo $\varphi \in \Gamma$.\\
+         Tenemos que $\Gamma$ es satisfacible si existe una interpretación $I$ tal que $I(\varphi) = 1$ para todo $\varphi \in \Gamma$.\\
 
          Así, evaluamos $I(\varphi_1) = 1$, es decir, $I(p \rightarrow q) = 1$, lo que implica que $I(p) = 0$ o $I(q) = 1$.\\
          
@@ -205,7 +299,7 @@
          
          Para que esto se cumpla, se debe cumplir que $I(s \vee p) = 1$ y $I(\neg q) = 1$.\\
          
-         Dado que $I(\neg q) = 1$, se tiene que $I(q) = 0$.\\
+         Dado que $I(\neg q) = 1$, se tiene que $I(q) = 0$ como habíamos supuesto.\\
 
          Por otro lado, $I(s \vee p) = 1$ implica que $I(s) = 1$ o $I(p) = 1$.\\
          
@@ -222,7 +316,8 @@
 
          \bigskip
          
-       \item[b)] $\{ p \rightarrow q, q \leftrightarrow s, \neg p, \neg s \}$
+       \item[b)] $\{ p \rightarrow q, q \leftrightarrow s, \neg p, \neg s \}$\\
+         
          Definimos el conjunto de fórmulas:
          \[
          \Gamma = \{ p \rightarrow q, q \leftrightarrow s, \neg p, \neg s \}
@@ -234,7 +329,8 @@
          \varphi_1 = p \rightarrow q, \quad \varphi_2 = q \leftrightarrow s, \quad \varphi_3 = \neg p, \quad \varphi_4 = \neg s
          \]
 
-         Analizamos la satisfacibilidad del conjunto.\\ 
+         Analizamos la satisfacibilidad del conjunto, evaluando si cada fórmula es satisfacible.\\
+         
          Si $I(\varphi_1) = 1$, es decir, $I(p \rightarrow q) = 1$, entonces debe cumplirse que $I(p) = 0$ o $I(q) = 1$.\\
          
          Dado que $I(\varphi_3) = 1$, es decir, $I(\neg p) = 1$, se tiene que $I(p) = 0$.\\
@@ -249,18 +345,24 @@
          
          Esto es consistente con la evaluación anterior de $I(s) = 0$.\\
 
-         Sin embargo, si asumimos que $I(q) = 1$, entonces $I(s) = 1$ por la equivalencia $q \leftrightarrow s$.\
+         Sin embargo, si asumimos que $I(q) = 1$, entonces $I(s) = 1$ por la equivalencia $q \leftrightarrow s$.\\
          
          Esto contradice la evaluación de $I(\neg s) = 1$, lo que significa que nuestra suposición de $I(q) = 1$ es incorrecta.\\
 
-         Así, forzamos que $I(q) = 0$ y $I(s) = 0$, lo cual es consistente con todas las fórmulas.\\
+         Así, tenemos que $I(p) = I(q) = I(s) = 0$, lo cual es consistente con todas las fórmulas.\\
 
-         Por lo tanto, hemos encontrado una interpretación que satisface todas las fórmulas en $\Gamma$, lo que implica que $\Gamma$ \textbf{es satisfacible}.
+         De este modo, hemos encontrado una interpretación que satisface todas las fórmulas en $\Gamma$
+
+         \[
+         \therefore \Gamma \text{ es satisfacible.}
+         \]
 
     \end{itemize}
 
   \bigskip
 
+  \newpage
+  
   % ---- Ejercicio 6 ----
   \item (2 pts.) Usando deducción natural pruebe la validez de los siguientes:
 
@@ -269,14 +371,22 @@
        \item $\neg p \lor q \vdash p \rightarrow q$
     \end{itemize}
 
-  \bigskip
+    \begin{center}
+      \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{ejercicio6.png}
+    \end{center}
+    
+  \newpage
 
   % ---- Ejercicio 7 ----
   \item (2 pts.) Considere el siguiente argumento lógico:
 
     \textit{Si Sarah Connor destruye a Skynet en 1994, entonces no habrá Día del Juicio Final. Si no hay Día del Juicio Final, John Connor no enviará a su padre a 1984. Es condición necesaria que John Connor envíe a su padre a 1984, para que el mismo John nazca. Sarah Connor no destruye a Skynet en 1994, si John no nace. Por lo tanto, Sarah Connor no destruirá a Skynet en 1994.}
 
-   Tradúzcalo a lógica proposicional y a través de tableaux semánticos determine si es correcto o no.
+    Tradúzcalo a lógica proposicional y a través de tableaux semánticos determine si es correcto o no.
 
+    \begin{center}
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{ejercicio7.png}
+    \end{center}
+    
 \end{enumerate}
 \end{document}
