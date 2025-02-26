@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Fedora 40) (preloaded format=pdflatex 2025.2.9)  12 FEB 2025 22:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Fedora 40) (preloaded format=pdflatex 2025.2.9)  24 FEB 2025 18:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -294,10 +294,10 @@ e
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<unam_logo.png, id=1, 534.99875pt x 602.25pt>
-File: unam_logo.png Graphic file (type png)
-<use unam_logo.png>
-Package pdftex.def Info: unam_logo.png  used on input line 22.
+<../unam_logo.png, id=1, 534.99875pt x 602.25pt>
+File: ../unam_logo.png Graphic file (type png)
+<use ../unam_logo.png>
+Package pdftex.def Info: ../unam_logo.png  used on input line 22.
 (pdftex.def)             Requested size: 85.93625pt x 96.73918pt.
 
 Overfull \hbox (0.57799pt too wide) in paragraph at lines 22--23
@@ -315,10 +315,10 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 24.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<fc_logo.png, id=3, 449.68pt x 513.92pt>
-File: fc_logo.png Graphic file (type png)
-<use fc_logo.png>
-Package pdftex.def Info: fc_logo.png  used on input line 40.
+<../fc_logo.png, id=3, 449.68pt x 513.92pt>
+File: ../fc_logo.png Graphic file (type png)
+<use ../fc_logo.png>
+Package pdftex.def Info: ../fc_logo.png  used on input line 40.
 (pdftex.def)             Requested size: 84.64413pt x 96.73918pt.
 
 Overfull \hbox (97.22661pt too wide) in paragraph at lines 61--62
@@ -330,8 +330,8 @@ tructuras-
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-di
-st/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./unam_logo.png> <./fc_logo.png>
-]
+st/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <../unam_logo.png> <../fc_logo.pn
+g>]
 Underfull \hbox (badness 10000) in paragraph at lines 119--122
 
  []
@@ -497,8 +497,8 @@ Overfull \hbox (27.38176pt too wide) in paragraph at lines 389--390
 enddocument/afterlastpage: lastpage setting LastPage.
 (./tarea1.aux) ) 
 Here is how much of TeX's memory you used:
- 4119 strings out of 477985
- 61366 string characters out of 5839371
+ 4120 strings out of 477985
+ 61405 string characters out of 5839371
  1866388 words of memory out of 6000000
  24269 multiletter control sequences out of 15000+600000
  519140 words of font info for 57 fonts, out of 8000000 for 9000
