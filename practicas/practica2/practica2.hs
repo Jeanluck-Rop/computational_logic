@@ -49,6 +49,21 @@ vars (No p)   = vars p
 -- % Ejercicio 3 % --
 -- Función que calcula la interpretación de una fórmula proposicional, dados los estados
 -- de las variables proposicionales.
+type Iterpretation = [(String, Bool)]
+interpretation :: Prop -> Iterpretation -> Bool
+interpretation (Var p) i = fromJust(lookup p i)
+interpretation (p :& q) = interpretation p i && interpretation q i
+interpretation (p :| q) = interpretation p i || interpretation q i 
+interpretation (p :/ q) = No (interpretation p i) || interpretation q i 
+interpretation (No p) = not (interpretation p i)
 
 -- % Ejercicio 4 % --
 -- función que determine si una fórmula es una tautología
+generateInterpretations :: [String] -> [Interpretation]
+generateInterpretations [] = [[]]
+generateInterpretations (v:vs) = let subInterpretations vs in [(v, True) : si | si <- subInterpretations] ++ [(v, False) : si | si <- subInterpretations]
+
+tautology Prop -> Bool
+tautology p = let variables = nub (var p)
+                  interpretations = generateInterpretations variables
+                  in all (\i -> interpretation p i)interpretations
