@@ -54,16 +54,17 @@ vars (No p)   = vars p
 -- de las variables proposicionales.
 type Interpretation = [(String, Bool)]
 interpretation :: Prop -> Interpretation -> Bool
-interpretation (Var p) i = fromJust (lookup p i)
+interpretation (Var p) i = maybe(error $ "Variable no definida: " ++ p ) id (lookup p i)
 interpretation (p :& q) i = interpretation p i && interpretation q i
 interpretation (p :| q) i = interpretation p i || interpretation q i 
-interpretation (p :/ q) i = interpretation p i /= interpretation q i
+interpretation (p :/ q) i = not (interpretation p i) || interpretation q i
 interpretation (No p) i = not (interpretation p i)
 
 -- % Ejercicio 4 % --
 -- función que determine si una fórmula es una tautología
 generateInterpretations :: [String] -> [Interpretation]
 generateInterpretations vars = sequence [ [(v, True), (v, False)] | v <- vars ]
+
 
 tautology :: Prop -> Bool
 tautology p = all (interpretation p) (generateInterpretations (nub(vars p)))
