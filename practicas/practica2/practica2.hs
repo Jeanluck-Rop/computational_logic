@@ -63,8 +63,15 @@ interpretation (No p) i = not (interpretation p i)
 -- % Ejercicio 4 % --
 -- función que determine si una fórmula es una tautología
 generateInterpretations :: [String] -> [Interpretation]
-generateInterpretations vars = sequence [ [(v, True), (v, False)] | v <- vars ]
+generateInterpretations [] = [[]]
+generateInterpretations (v:vs) =
+  let inter = generateInterpretations vs
+  in [(v, True):a | a <- inter] ++ [(v, False):a | a <- inter]
 
 
 tautology :: Prop -> Bool
-tautology p = all (interpretation p) (generateInterpretations (nub(vars p)))
+tautology p =
+  let vs =nub (vars p)
+      states = generateInterpretations vs
+  in all (\state -> interpretation p state) states
+  
