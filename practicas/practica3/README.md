@@ -103,23 +103,20 @@ Resultado final (multiplicación de todos los elementos):
 ### Ejercicio 3.
 ```
 ghci> numToProp 984150
-Construyendo la Prop a partir de los números: [1,9,2]
 (Var "p" :/ Var "q")
+True
 
 ghci> numToProp 54675000
-Construyendo la Prop a partir de los números: [3,7,5]
 (Var "r" :& Var "t")
-
-Construyendo la Prop a partir de los números: [4,8,3]
-(Var "s" :| Var "r")
+True
 
 ghci> numToProp 12
-No se pudo hacer una fórmula proposicional a partir del número dado
-
-ghci> numToProp 1024
-No se pudo hacer una fórmula proposicional a partir del número dado
+False
 
 ghci> numToProp 1543790178000
-Construyendo la Prop a partir de los números: [4,8,3,6]
-(Var "s" :| Var "r" No) //Para este caso hay que cambiar la notacion a (Var "s" :| No (Var "r"))
+(Var "s" :| Var "r" No) <!-- Para este caso hay que cambiar la notacion a (Var "s" :| No (Var "r")) -->
+True
+
+ghci> numToProp 1024
+False 
 ```

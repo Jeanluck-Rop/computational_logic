@@ -1,4 +1,4 @@
-import Data.List (group)
+import Data.List (group) 
 import Data.List (isInfixOf)
 import Data.Char (isSpace)
 
@@ -16,7 +16,7 @@ generatePrimes :: Int -> [Int]
 generatePrimes n = [x | x <- [1..n], isPrime x]
 
 --     %    Ejercicio 1.   %     --
--- Función que recibe un número natural y devuelve la lista de sus factores primos
+-- Función principal que recibe un número natural y devuelve la lista de sus factores primos
 primeFactors :: Int -> [Int]
 primeFactors n 
   | n < 2 = error "El número ingresado debe ser mayor o igual a 2"
@@ -85,7 +85,7 @@ multiplyList :: [Integer] -> Integer
 multiplyList = product
 
 --     %   Ejercicio 2.   %     --
-{- Función que recibe un objeto de tipo Prop y devuelva un número natural
+{- Función principal que recibe un objeto de tipo Prop y devuelva un número natural
  - La asignación es tal que a cada fórmula distinta le corresponda un número unico y diferente a las demás
  - Incluso las fórmulas equivalentes tienen un número diferente
  -}
@@ -124,8 +124,9 @@ propToNumData prop = do
 
 
 
-  
--- Asignar valores a números entre 1 y 9
+
+{-     Funciones auxiliares para la funcionalidad del Ejercicio 3.     -}
+-- Función que asigna las cadenas correspondientes a números entre 1 y 9
 getVars :: Integer -> String
 getVars 1 = "Var \"p\""
 getVars 2 = "Var \"q\""
@@ -137,48 +138,51 @@ getVars 7 = ":&"
 getVars 8 = ":|"
 getVars 9 = ":/"
 
--- Función para validar la cadena
+-- Verificamos si la cadena es válida de acuerdo a Prop
 validString :: String -> Bool
 validString str =
     let cleanStr = filter (not . isSpace) str  -- Eliminamos los espacios
-    in not ("\"Var" `isInfixOf` cleanStr || 
+    in not ("\"Var" `isInfixOf` cleanStr ||    -- Verificamos si una lista es una sublista de otra
             "&:" `isInfixOf` cleanStr || 
             "|:" `isInfixOf` cleanStr || 
             "/:" `isInfixOf` cleanStr)
 
---
+-- Función auxiliar para construir la cadena en orden
 buildProp :: [Integer] -> String
 buildProp list =
   let propStr = "(" ++ unwords (map getVars list) ++ ")"  -- Construimos la cadena
   in if validString propStr then propStr else ""          -- Validamos antes de devolver
 
 
--- Contar las ocurrencias de cada factor primo y convertirlas en una lista de números
+-- Función auxiliar para contar las ocurrencias de cada factor primo y convertirlas en una lista de números
 countFactors :: [Int] -> [Integer]
-countFactors = map (fromIntegral . length) . group
+countFactors = map (fromIntegral . length) . group -- Tomamos la lista y agrupamos los elementos consecutivos iguales en sublistas
 
--- Verificar si la lista de números es válida
+-- Verificamos si la lista es válida, es decir que no haya números mayores a 9 o números iguales consecutivos
 isValidList :: [Integer] -> Bool
 isValidList xs = all (<=9) xs && not (hasConsecutives xs)
 
--- Verificar si hay números repetidos consecutivos
+-- Verificamos si hay números repetidos consecutivos
 hasConsecutives :: [Integer] -> Bool
 hasConsecutives (a:b:rest) = (a == b) || hasConsecutives (b:rest)
 hasConsecutives _ = False
 
--- Convertir un número en una fórmula proposicional
-numToProp :: Integer -> IO ()
+--     %   Ejercicio 3.   %     --
+{- Función principal que, dado un número entero de manera arbitraria, devuelve un objeto de tipo Bool,
+ - De modo que se devuelva True solamente para aquellos casos que el número ingresado es el asociado
+ - con la fórmula proposicional
+ -}
+numToProp :: Integer -> IO Bool
 numToProp n = do
     let factors = primeFactors (fromIntegral n)
     let listaProp = countFactors factors
     
     if not (isValidList listaProp)
-        then putStrLn "No se pudo hacer una fórmula proposicional a partir del número dado"
+        then return False
         else do
             let propStr = buildProp listaProp
             if propStr == ""
-                then putStrLn "No se pudo hacer una fórmula proposicional a partir del número dado"
+                then return False
                 else do
-                    putStrLn ("Construyendo la Prop a partir de los números: " ++ show listaProp)
                     putStrLn propStr
-
+                    return True
