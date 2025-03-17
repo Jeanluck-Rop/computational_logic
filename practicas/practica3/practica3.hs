@@ -1,6 +1,6 @@
 import Data.List (group)
-import Data.Maybe (mapMaybe)
-import Debug.Trace (trace)
+import Data.List (isInfixOf)
+import Data.Char (isSpace)
 
 {-     Funciones auxiliares para la funcionalidad del Ejercicio 1.     -}
 -- Función para obtener los factores del número dado
@@ -14,8 +14,6 @@ isPrime n = (factors n) == [1, n]
 -- Fución para obtener una lista con los números primos de 2 hasta n
 generatePrimes :: Int -> [Int]
 generatePrimes n = [x | x <- [1..n], isPrime x]
-
-
 
 --     %    Ejercicio 1.   %     --
 -- Función que recibe un número natural y devuelve la lista de sus factores primos
@@ -86,9 +84,6 @@ assignPowers primes powers = zipWith (^) primes powers
 multiplyList :: [Integer] -> Integer
 multiplyList = product
 
-
-
-
 --     %   Ejercicio 2.   %     --
 {- Función que recibe un objeto de tipo Prop y devuelva un número natural
  - La asignación es tal que a cada fórmula distinta le corresponda un número unico y diferente a las demás
@@ -142,9 +137,21 @@ getVars 7 = ":&"
 getVars 8 = ":|"
 getVars 9 = ":/"
 
+-- Función para validar la cadena
+validString :: String -> Bool
+validString str =
+    let cleanStr = filter (not . isSpace) str  -- Eliminamos los espacios
+    in not ("\"Var" `isInfixOf` cleanStr || 
+            "&:" `isInfixOf` cleanStr || 
+            "|:" `isInfixOf` cleanStr || 
+            "/:" `isInfixOf` cleanStr)
+
 --
 buildProp :: [Integer] -> String
-buildProp list = "(" ++ unwords (map getVars list) ++ ")"      
+buildProp list =
+  let propStr = "(" ++ unwords (map getVars list) ++ ")"  -- Construimos la cadena
+  in if validString propStr then propStr else ""          -- Validamos antes de devolver
+
 
 -- Contar las ocurrencias de cada factor primo y convertirlas en una lista de números
 countFactors :: [Int] -> [Integer]
@@ -163,11 +170,15 @@ hasConsecutives _ = False
 numToProp :: Integer -> IO ()
 numToProp n = do
     let factors = primeFactors (fromIntegral n)
-    putStrLn ("Factores primos: " ++ show factors)
-
     let listaProp = countFactors factors
+    
     if not (isValidList listaProp)
-        then putStrLn "No se pudo hacer una fórmula proposicional"
+        then putStrLn "No se pudo hacer una fórmula proposicional a partir del número dado"
         else do
-            putStrLn ("Construyendo la Prop a partir de los números: " ++ show listaProp)
-            putStrLn (buildProp listaProp)
+            let propStr = buildProp listaProp
+            if propStr == ""
+                then putStrLn "No se pudo hacer una fórmula proposicional a partir del número dado"
+                else do
+                    putStrLn ("Construyendo la Prop a partir de los números: " ++ show listaProp)
+                    putStrLn propStr
+
