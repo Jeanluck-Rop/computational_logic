@@ -4,20 +4,20 @@ import Data.Char (isSpace)
 
 {-     Funciones auxiliares para la funcionalidad del Ejercicio 1.     -}
 -- Función para obtener los factores del número dado
-factors :: Int ->[Int]
+factors :: Integer ->[Integer]
 factors n = [x | x <- [1..n], (mod n x) == 0]
 
 -- Función auxiliar para revisar si el número es primo
-isPrime :: Int -> Bool
+isPrime :: Integer -> Bool
 isPrime n = (factors n) == [1, n]
 
 -- Fución para obtener una lista con los números primos de 2 hasta n
-generatePrimes :: Int -> [Int]
+generatePrimes :: Integer -> [Integer]
 generatePrimes n = [x | x <- [1..n], isPrime x]
 
 --     %    Ejercicio 1.   %     --
 -- Función principal que recibe un número natural y devuelve la lista de sus factores primos
-primeFactors :: Int -> [Int]
+primeFactors :: Integer -> [Integer]
 primeFactors n 
   | n < 2 = error "El número ingresado debe ser mayor o igual a 2"
   | otherwise = factorize n (generatePrimes n)                 -- Creamos una lista de primos 
@@ -153,9 +153,8 @@ buildProp list =
   let propStr = "(" ++ unwords (map getVars list) ++ ")"  -- Construimos la cadena
   in if validString propStr then propStr else ""          -- Validamos antes de devolver
 
-
 -- Función auxiliar para contar las ocurrencias de cada factor primo y convertirlas en una lista de números
-countFactors :: [Int] -> [Integer]
+countFactors :: [Integer] -> [Integer]
 countFactors = map (fromIntegral . length) . group -- Tomamos la lista y agrupamos los elementos consecutivos iguales en sublistas
 
 -- Verificamos si la lista es válida, es decir que no haya números mayores a 9 o números iguales consecutivos
@@ -166,6 +165,13 @@ isValidList xs = all (<=9) xs && not (hasConsecutives xs)
 hasConsecutives :: [Integer] -> Bool
 hasConsecutives (a:b:rest) = (a == b) || hasConsecutives (b:rest)
 hasConsecutives _ = False
+
+-- Función para intercambiar los operandos 'No' a la posicion correcta
+swapList :: [Integer] -> [Integer]
+swapList (x:y:xs)
+    | y == 6    = y : x : swapList xs  -- Intercambiamos si el segundo elemento es 6
+    | otherwise = x : swapList (y:xs)  -- Continuamos recorriendo la lista
+swapList xs = xs                       -- Caso base, listas de 0 o 1 elementos no cambian
 
 --     %   Ejercicio 3.   %     --
 {- Función principal que, dado un número entero de manera arbitraria, devuelve un objeto de tipo Bool,
@@ -180,7 +186,8 @@ numToProp n = do
     if not (isValidList listaProp)
         then return False
         else do
-            let propStr = buildProp listaProp
+            let checkedList = swapList listaProp
+            let propStr = buildProp checkedList
             if propStr == ""
                 then return False
                 else do

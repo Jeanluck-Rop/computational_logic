@@ -101,6 +101,7 @@ Resultado final (multiplicación de todos los elementos):
 
 
 ### Ejercicio 3.
+<!-- Para este ejericio, a los números a los que sí se halla encontrado una posible fórmula Prop, será necesario, en algunos casos, agregar paréntesis según lo necesiten las fórmulas -->
 ```
 ghci> numToProp 984150
 (Var "p" :/ Var "q")
@@ -112,9 +113,12 @@ True
 
 ghci> numToProp 12
 False
+```
 
+<!-- Como este caso, para que la Prop sea completamente valida falta agregar los parentesis: (Var "s" :| No (Var"r"))-->
+```
 ghci> numToProp 1543790178000
-(Var "s" :| Var "r" No) <!-- Para este caso hay que cambiar la notacion a (Var "s" :| No (Var "r")) -->
+(Var "s" :| No Var "r") 
 True
 
 ghci> numToProp 1024

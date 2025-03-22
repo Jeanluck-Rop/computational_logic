@@ -54,8 +54,7 @@
 \section*{Notas sobre la resolución.}
 
 \begin{quote}
-  \textbf{Nota general:}
-  
+  \textbf{Nota general:} Los ejercicios fueron resueltos en base a las notas de clase lcNota6.pdf, lNota7.pdf, y lcNota8.pdf, además de los comentarios dados en las sesiones del curso.
 \end{quote}
 
 \bigskip
@@ -81,6 +80,33 @@
   \bigskip
   % -- Respuesta --
   \bigskip
+
+  \large{\textbf{Especificaci\'{o}n formal funional.}}\\
+  Denotamos las pilas con elementos del tipo A como $\mathcal{P_A} $.\\
+  Tenemos el predicado $P(x)$, la constante $\textit{empty}$ y las funciones $\textit{push}^{(2)}$, $\textit{pop}^{(1)}$ y $\textit{top}^{(1)}$.\\
+  \begin{enumerate}
+  \item[a)] Definición del tipo de datos pila:
+    \begin{enumerate}
+    \item[\footnotesize I.] \textit{empty} es una pila vacía de elementos de $A$.\\
+      \[
+      P(\textit{empty})
+      \]
+    \item[\footnotesize II.] El resultado de agregar un elemento de $A$ en el tope de la pila es una pila de elementos de $A$.\\
+      \[
+      \forall p : \mathcal{P}_A \hspace{3mm} \forall a : A \; \Big(P\big(\operatorname{push}(a, p)\big)\Big)
+      \]
+    \item[\footnotesize III.] Son todos.
+    \end{enumerate}
+  \item[b)] Si una pila no es vacía, entonces el elemento en el tope es un elemento de $A$.\\
+    \[
+     \forall p : \mathcal{P}_A \; \big(p \neq \textit{empty} \imp \operatorname{top}(p) = a : A\big)
+    \]
+  \item[c)] Si una pila no es vacía, entonces la pila que resulta de eliminar el elemento en el tope es una pila de elementos de $A$.\\
+    \[
+     \forall p : \mathcal{P}_A \; \big(p \neq \textit{empty} \imp P(\operatorname{pop}(p))\big)
+    \]
+  \end{enumerate}
+  
   
 \item (2 pts.) ¿Qué se sigue lógicamente de lo siguiente? \textit{Todos los monquitos son pachones. Pac es un monquito. Todos los chicubus son monquitos. Algunos monquitos son chicubus. Pac no es chicubus.}
   
@@ -99,7 +125,19 @@
   Traduzca el argumento, con la conclusión que haya seleccionado, a un secuente de la lógica de predicados, y halle una prueba de dicho secuente usando deducción natural. Use los predicados $M(x) : x$ es monquito, $P(x) : x$ es pachón, $C(x) : x$ es chicubus, y la constante $a$ para denotar a Pac.
   \bigskip
   % -- Respuesta --
-  \bigskip
+
+  \newpage
+
+  \begin{center}
+    \hspace{-1.2cm} \includegraphics[width=\textwidth,height=1.0\textheight,keepaspectratio]{ejercicio2a.png}
+  \end{center}
+
+  
+  \begin{center}
+    \hspace{-1.2cm} \includegraphics[width=\textwidth,height=1.0\textheight,keepaspectratio]{ejercicio2b.png}
+  \end{center}
+
+  \newpage
   
 \item (2 pts.) Mediante deducción natural muestre la validez de:
   \begin{enumerate}
@@ -108,8 +146,17 @@
   \end{enumerate}
   \bigskip
   % -- Respuesta --
-  \bigskip
-    
+
+  \begin{center}
+    \hspace{-1.2cm} \includegraphics[width=\textwidth,height=1.0\textheight,keepaspectratio]{ejercicio3a.png}
+  \end{center}
+
+  \begin{center}
+    \hspace{-1.2cm} \includegraphics[width=\textwidth,height=1.0\textheight,keepaspectratio]{ejercicio3b.png}
+  \end{center}
+  
+  \newpage
+  
 \item (1 pt.) Una fórmula atómica cerrada es una fórmula atómica $P(a_1, \dots, a_n)$ cuyos argumentos son constantes. Considere un lenguaje con $n$ objetos constantes y una sola relación \textit{binaria} $R^{(2)}$.
   \begin{enumerate}
   \item[\footnotesize I)] ¿Cuántas fórmulas atómicas cerradas hay en este lenguaje?\\
@@ -126,9 +173,12 @@
     d) $2^{n^2}$ \hfill
     e) $2^{2^n}$
   \end{enumerate}
-  \bigskip
   % -- Respuesta --
-  \bigskip
+  \begin{center}
+        \hspace{-0.7cm} \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{ejercicio4.png}
+  \end{center}
+
+  \newpage
   
 \item (1.5 pts.) Sea $\varphi$ el enunciado $\forall x \forall y \exists z (R(x,y) \to R(y,z))$, con $R^{(2)}$.
   \begin{enumerate}
@@ -137,15 +187,33 @@
   \end{enumerate}
   \bigskip
   % -- Respuesta --
-  \bigskip
+
+  \begin{center}
+    \hspace{-1.2cm} \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{ejercicio5a.png}
+  \end{center}
+
+  \begin{center}
+    \hspace{-1.2cm} \includegraphics[width=\textwidth,height=1.1\textheight,keepaspectratio]{ejercicio5b.png}
+  \end{center}
+
+  \begin{center}
+    \hspace{-1.2cm} \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{ejercicio5c.png}
+  \end{center}
+
+  \newpage
   
 \item (2 pts.) Determine si el siguiente conjunto es satisfacible:
   \[
   \Gamma = \{P(b), Q(b), R(b), \exists x(P(x) \land \neg(Q(x) \lor R(x))), \forall x(R(x) \to P(x))\}
   \]
-  \bigskip
   % -- Respuesta --
-  \bigskip
+  \begin{center}
+    \hspace{-1.2cm} \includegraphics[width=\textwidth,height=1.1\textheight,keepaspectratio]{ejercicio6a.png}
+  \end{center}
+
+  \begin{center}
+    \hspace{-1.2cm} \includegraphics[width=\textwidth,height=1.1\textheight,keepaspectratio]{ejercicio6b.png}
+  \end{center}
   
 \end{enumerate}
 
