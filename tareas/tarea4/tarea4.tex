@@ -53,7 +53,7 @@
 \section*{Notas sobre la resolución.}
 
 \begin{quote}
-  \textbf{Nota general:} Cada ejercicio fue resuelto en base, y tomando como referencia, las notas de clase lcNota9.pdf, lNota10.pdf, y lcNota11.pdf.
+  \textbf{Nota general:} Cada ejercicio fue resuelto en base, y tomando como referencia, las notas de clase lcNota9.pdf, lcNota10.pdf, y lcNota11.pdf.
   
   Adem\'{a}s de las clases presenciales impartidas por el profesor y ayudantes, tanto para resolver dudas como las pistas y consejos dados
 \end{quote}
@@ -82,12 +82,12 @@
   \end{center}
 
   \[
-  \hspace{-1cm}\therefore \text{ Se cumple } \forall \text{x R(x,x)}
+  \hspace{-1cm}\therefore \text{ Se cumple } \forall \text{$x R(x,x)$}
   \]
   
   \newpage
   
-\item (2 pts.) Transforme cada una de las siguientes fórmulas en forma normal clausal. Escriba cada uno de los pasos que utilizó.
+\item (2 pts.) Transforme cada una de las siguientes fórmulas en forma normal clausular. Escriba cada uno de los pasos que utilizó.
   \begin{itemize}
   \item \( \forall x \forall y (\exists z P(z) \wedge \exists u (Q(x,u) \rightarrow \exists v Q(y,v))) \)
   \item \( \forall x \forall y \left( Q(x,y) \leftrightarrow \forall z (P(z,x) \leftrightarrow P(z,y)) \right) \)
@@ -411,7 +411,8 @@
     \]
   \end{enumerate}
   
-  Notemos que tenemos $y = g(f(a)),\; y = f(f(a))$, entonces podemos decir que$ g(f(a)) = f(f(a))$, una ecuaci\'{o}n donde ambos lado de la igualdad no son varibales.
+  Notemos que tenemos $y = g(f(a)),\; y = f(f(a))$, entonces podemos decir que\\
+  $g(f(a)) = f(f(a))$, una ecuaci\'{o}n donde ambos lado de la igualdad no son varibales.
 
   Por la regla 3. \textit{Si el s\'{i}mbolo de funci\'{o}n m\'{a}s externo de t y s no es el mismo, el algoritmo termina reportando no unificable.}. Para este caso $t = g(f(a)),\; s = f(f(a))$, de modo que el conjunto de ecuaciones de t\'{e}rminos dado no se le puede asignar un unificador.
   
@@ -536,7 +537,7 @@
 
   As\'{i} terminamos exitosamente el algoritmo, y afirmamos que:
   \begin{center}
-    \textbf{Output:} $\mu = [x := g(g(z)), a := z, y := g(z)]$
+    \textbf{Output:} $\mu = [x := g(g(z)),\; a := z,\; y := g(z)]$
   \end{center}
 
   Comprobamos aplicando el umg:
@@ -555,7 +556,7 @@
   
   Podemos verificar tambi\'{e}n que el unificador:
   \[
-  \theta = [x := g(g(h(b))), a := h(b), y := g(h(b)), z := h(b)]
+  \theta = [x := g(g(h(b))),\; a := h(b),\; y := g(h(b)),\; z := h(b)]
   \]
   puede expresarse como $\theta = \mu[z := h(b)]$
   
@@ -604,20 +605,26 @@
   \item \( \forall y P(a, y) \Rightarrow \{\; P(a, y)\; \} \)
   \item Tenemos el consecuente \( \forall x \forall y P(x, y) \), por lo que lo negamos y tenemos:
 
-    \( \hspace{1.86cm} \Rightarrow \{\; \neg P(x, y)\; \} \)
+    \( \neg \big(\forall x \forall y P(x, y)\big) \equiv \neg \forall x \neg \forall y \neg P(x, y) \equiv \exists x \exists y \neg P(x, y) \)
+
+    Aplicando la \textit{Skolemizaci\'{o}n}, dado que no hay alg\'{u}n cuantificador universal antes de ambos cuantificadores existenciales, entonces los argumentos de $P$ son constantes:
+    
+    \( \hspace{1.86cm} \Rightarrow \{\; \neg P(b, c)\;  \} \)
   \end{itemize}
 
-  Dado el conjunto $S =$ \( \Big\{\: \{\: \neg P(x, y),\: \neg P(y, z),\: P(x, z) \: \}, \; \{\: P(x, a)\: \},\;  \{\: P(a, y)\: \},\; \{\: \neg P(x, y)\: \} \:\Big\} \)
+  Dado el conjunto $S =$ \( \Big\{\: \{\: \neg P(x, y),\: \neg P(y, z),\: P(x, z) \: \}, \; \{\: P(x, a)\: \},\;  \{\: P(a, y)\: \},\; \{\: \neg P(b, c)\: \} \:\Big\} \)
 
   Realizamos el Procedimiento de Resoluci\'{o}n General:
   
   \begin{center}
     \begin{enumerate}[label=\arabic*.]
-    \item \( \{\; {\neg P(x, y),\: \neg P(y, z),\: P(x, z) }\; \} \) \quad \textit{Prem}
+    \item \( \{\; \neg P(x, y),\: \neg P(y, z),\: P(x, z) \; \} \) \quad \textit{Prem}
     \item \( \{\; P(x, a)\; \} \) \hspace{3.9cm} \textit{Prem}
     \item \( \{\; P(a, y)\; \} \) \hspace{3.9cm} \textit{Prem}
-    \item \( \{\; \neg P(x, y)\; \} \) \hspace{3.6cm} \textit{Prem}
-    \item $\scalebox{1.3}{$\square$}$ \hspace{3.2cm} $[y := a]$ \hspace{0.55cm} \textit{Res} (2, 4)
+    \item \( \{\; \neg P(b, c)\; \} \) \hspace{3.7cm} \textit{Prem}
+    \item \( \{\; \neg P(a, z),\; P(x, z)\; \}\) \hspace{0.2cm} $[y := a]$ \hspace{0.22cm} \textit{Res} (1, 2)
+    \item \( \{\; P(x, z)\; \}\) \hspace{2.05cm} $[z := y]$ \hspace{0.22cm} \textit{Res} (3, 5)
+    \item $\scalebox{1.3}{$\square$}$ \hspace{2.23cm} $[x := b,\; y := c]$ \hspace{0.22cm} \textit{Res} (4, 6)
     \end{enumerate}
   \end{center}
 
