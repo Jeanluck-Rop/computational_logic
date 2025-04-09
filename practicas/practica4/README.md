@@ -65,13 +65,59 @@ Pred "cacahuate" [Var "x"] :/ Pred "salado" [Var "x"]
 ```
 
 ### Ejercicio 2.
+```
+ghci> let facts = [("taco", "comida"), ("taco", "comestible")]
+ghci> interpret facts (Pred "comida" [Var "taco"])
+True
+```
 
 ```
+ghci> interpret facts (Pred "picante" [Var "taco"])
+False
+```
+
+```
+ghci> interpret facts (No (Pred "picante" [Var "taco"]))
+True
+```
+
+```
+ghci> interpret facts (Pred "comida" [Var "taco"] :& No (Pred "comestible" [Var "taco"]))
+False
+
 ```
 
 ### Ejercicio 3.
+```
+ghci> let facts = [("juan", "isUser"), ("juan", "hasKey")]
+ghci> let premises = [isUser (Var "juan"), hasKey (Var "juan")]
+ghci> let conclusion = allowedAccess (Var "juan")
+ghci> isLogicalConsequence premises conclusion facts
+True
+```
 
 ```
+ghci> let facts = [("ana", "isAdmin")]
+ghci> let premises = [isAdmin (Var "ana"), rule3 (Var "ana")]
+ghci> let conclusion = allowedAccess (Var "ana")
+ghci> isLogicalConsequence premises conclusion facts
+True
+```
+
+```
+ghci> let facts = [("mario", "isUser")]
+ghci> let premises = [isUser (Var "mario")]
+ghci> let conclusion = hasKey (Var "mario")
+ghci> isLogicalConsequence premises conclusion facts
+False
+```
+
+```
+ghci> let facts = [("ana", "isAdmin")]
+ghci> let premises = [isAdmin (Var "ana"), rule2 (Var "ana")]
+ghci> let conclusion = hasKey (Var "ana")
+ghci> isLogicalConsequence premises conclusion facts
+True
 ```
 
 ### Ejercicio 4.

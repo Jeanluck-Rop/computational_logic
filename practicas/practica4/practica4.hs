@@ -10,20 +10,25 @@ data Prop = Var String
   | E String Prop
   deriving(Eq, Show)
 
-
-
 --     %    Ejercicio 2.   %     --
 -- Implementamos una función para verificar si una interpretación satisface una fórmula.
-
-
-
+satisfies :: Facts -> Prop -> Bool
+satisfies facts prop = interpret facts prop
 
 --     %    Ejercicio 3.   %     --
 -- Implementamos una función para verificar si una fórmula es consecuencia lógica de un conjunto de premisas.
+isLogicalConsequence :: [Prop] -> Prop -> Facts -> Bool
+isLogicalConsequence premises conclusion facts =
+    all (interpret facts) premises ==> interpret facts conclusion
+  where
+    p ==> q = not p || q
 
+facts = [("juan", "isUser"), ("juan", "hasKey")]
+premises = [isUser (Var "juan"), hasKey (Var "juan")]
+conclusion = allowedAccess (Var "juan")
 
-
-
+resultado = isLogicalConsequence premises conclusion facts
+ 
 --     %    Ejercicio 4.   %     --
 -- Definimos un conjunto de reglas para un sistema donde los usuarios tienen permisos según sus credenciales.
 
